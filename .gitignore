@@ -1,0 +1,33 @@
+# Data and model artifacts
+data/raw/*
+data/interim/*
+data/processed/*
+data/labels/*
+data/results/*
+models/*
+
+!.gitkeep
+!data/raw/.gitkeep
+!data/interim/.gitkeep
+!data/processed/.gitkeep
+!data/processed/train.csv
+!data/processed/test.csv
+!data/processed/holdout_locked.csv
+!data/processed/split_stats.json
+!data/labels/.gitkeep
+!data/labels/holdout_human_labeling_sheet.csv
+!data/labels/holdout_labeling_workbook.xlsx
+!data/results/.gitkeep
+!data/results/dictionary_baseline_predictions.csv
+!models/.gitkeep
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Local secrets
+.env
+.env.local

@@ -1,0 +1,45 @@
+benchmark_roster:
+  # Keep prompts and decoding settings fixed across models where provider APIs allow it.
+  decoding:
+    temperature: 0
+    max_output_tokens: 500
+    response_format: json
+  models:
+    - supplier: OpenAI
+      model: gpt-4o-mini
+      task_role: low_cost_frontier_baseline
+    - supplier: OpenAI
+      model: gpt-4.1-mini
+      task_role: stronger_openai_baseline
+    - supplier: Anthropic
+      model: claude-3-5-haiku-latest
+      task_role: low_latency_anthropic_baseline
+    - supplier: Anthropic
+      model: claude-3-7-sonnet-latest
+      task_role: stronger_anthropic_baseline
+    - supplier: Google
+      model: gemini-2.0-flash
+      task_role: low_cost_google_baseline
+    - supplier: Google
+      model: gemini-2.5-pro
+      task_role: high_reasoning_google_baseline
+
+selection_strategy_candidates:
+  - best_single_model_by_macro_f1
+  - majority_vote_across_top_3_models
+  - confidence_weighted_vote_if_available
+
+metrics:
+  classification:
+    - macro_f1
+    - per_class_f1
+    - mcc
+    - auc_ovr_when_probabilities_available
+  reliability:
+    - krippendorff_alpha_nominal
+    - percent_agreement
+  operations:
+    - runtime_seconds
+    - estimated_cost_usd
+    - parse_failure_rate
+

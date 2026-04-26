@@ -1,0 +1,33 @@
+{
+  "input_path": "data/interim/goodreads_spoiler_sample_16200.csv",
+  "output_dir": "data/processed",
+  "seed": 20260426,
+  "rows_after_quality_filter": 16200,
+  "duplicates_removed": 83,
+  "train_rows": 12000,
+  "test_rows": 3000,
+  "holdout_rows": 1000,
+  "rating_distribution": {
+    "1": 2695,
+    "5": 2691,
+    "2": 2687,
+    "0": 2685,
+    "3": 2683,
+    "4": 2676
+  },
+  "length_distribution": {
+    "medium": 5398,
+    "long": 5398,
+    "short": 5321
+  },
+  "word_count_summary": {
+    "count": 16117.0,
+    "mean": 162.20940621703792,
+    "std": 221.56481725691904,
+    "min": 3.0,
+    "25%": 22.0,
+    "50%": 74.0,
+    "75%": 214.0,
+    "max": 2503.0
+  }
+}

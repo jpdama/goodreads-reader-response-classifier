@@ -1,0 +1,148 @@
+project:
+  name: goodreads_reader_response_classifier
+  unit_of_analysis: entire_review
+  source_domain: book_reviews
+  primary_business_user: reader_insights_or_recommendation_product_team
+
+tasks:
+  emotions:
+    type: multi_label
+    instruction: Select every emotion that the reviewer explicitly expresses toward the book, reading experience, author, characters, plot, or series. If no emotion is present, select only none.
+    none_policy: none is exclusive and must not be combined with another emotion label.
+    labels:
+      joy:
+        definition: Reviewer expresses happiness, delight, amusement, excitement, or being uplifted.
+        include:
+          - "made me smile"
+          - "fun read"
+          - "so happy"
+        exclude:
+          - liking a feature without affective language
+      love:
+        definition: Reviewer expresses strong affection, devotion, adoration, or favorite-level attachment.
+        include:
+          - "I loved this"
+          - "one of my favorite books"
+          - "adore this author"
+        exclude:
+          - mild enjoyment
+      surprise:
+        definition: Reviewer describes shock, unexpectedness, twists, revelations, or being caught off guard.
+        include:
+          - "did not see that coming"
+          - "twist ending"
+        exclude:
+          - new information that is not framed as unexpected
+      contentment:
+        definition: Reviewer expresses satisfaction, comfort, calm enjoyment, or that expectations were met.
+        include:
+          - "satisfying ending"
+          - "pleasant read"
+          - "exactly what I wanted"
+        exclude:
+          - intense joy or love when satisfaction is not separately stated
+      interest:
+        definition: Reviewer expresses curiosity, engagement, intrigue, or intellectual fascination.
+        include:
+          - "kept me interested"
+          - "intriguing premise"
+        exclude:
+          - "interesting" used sarcastically or as a filler word
+      anger:
+        definition: Reviewer expresses anger, outrage, moral indignation, or being mad.
+        include:
+          - "made me furious"
+          - "I was angry"
+        exclude:
+          - annoyance without anger
+      frustration:
+        definition: Reviewer expresses annoyance, irritation, impatience, confusion with the book, or feeling blocked by flaws.
+        include:
+          - "so frustrating"
+          - "annoying pacing"
+          - "hard to follow"
+        exclude:
+          - low rating without affective language
+      disappointment:
+        definition: Reviewer says the book fell short of expectations or potential.
+        include:
+          - "disappointed"
+          - "wanted to like it more"
+          - "not as good as the first"
+        exclude:
+          - negative critique without an expectation gap
+      sadness:
+        definition: Reviewer expresses sadness, grief, heartbreak, melancholy, guilt, or being emotionally hurt.
+        include:
+          - "I cried"
+          - "heartbreaking"
+          - "made me sad"
+        exclude:
+          - tragic plot content not described as the reviewer's feeling
+      fear:
+        definition: Reviewer expresses fear, dread, anxiety, creepiness, or being scared.
+        include:
+          - "terrifying"
+          - "creeped me out"
+        exclude:
+          - horror genre mention without felt fear
+      disgust:
+        definition: Reviewer expresses repulsion, revulsion, or distaste toward content, style, character behavior, or reading experience.
+        include:
+          - "disgusting"
+          - "repulsive"
+          - "gross"
+        exclude:
+          - "bad" without repulsion
+      boredom:
+        definition: Reviewer expresses boredom, dullness, lack of engagement, tediousness, or indifference.
+        include:
+          - "boring"
+          - "dragged"
+          - "could not stay interested"
+        exclude:
+          - neutral factual summary
+      none:
+        definition: No codable emotion is expressed, or the review is empty, unintelligible, purely factual, or only contains metadata.
+        exclusive: true
+
+  commitment:
+    type: single_label_ordinal
+    instruction: Estimate whether the reviewer is likely to continue with this author, series, universe, or closely related books.
+    labels:
+      low:
+        value: 0
+        definition: Reviewer explicitly rejects continuing, says they will not finish/read more, or shows strong evidence of abandonment.
+      medium:
+        value: 1
+        definition: Continuation is unclear, mixed, conditional, or not mentioned.
+        default: true
+      high:
+        value: 2
+        definition: Reviewer explicitly intends to read more, continue the series, seek the sequel, or read more by the author.
+
+  recommendation:
+    type: single_label_ordinal
+    instruction: Estimate whether the reviewer would recommend the book to another reader.
+    labels:
+      would_not:
+        value: 0
+        definition: Reviewer discourages reading, warns others away, or says the book is not worth the time.
+      neutral:
+        value: 1
+        definition: Recommendation is unclear, mixed, conditional, audience-specific, or not mentioned.
+        default: true
+      would_recommend:
+        value: 2
+        definition: Reviewer explicitly recommends the book, urges others to read it, or says it is worth reading.
+
+decision_rules:
+  - Code the reviewer's expressed response, not the objective content of the book.
+  - Use the entire review as context, including rating only as a weak cue if rating is available. Text overrides rating.
+  - Emotion labels are independent except none, which is exclusive.
+  - For commitment and recommendation, choose exactly one label each.
+  - If a text is unintelligible, empty, spam, or not a review, use emotions none, commitment medium, and recommendation neutral, and flag quality_issue.
+  - If a review contains sarcasm, code the implied meaning only when it is clear to a reasonable human annotator.
+  - If a reviewer recommends only to a narrow audience, choose recommendation neutral unless the target audience is broad or explicitly positive.
+  - If the reviewer says they will finish the current book but not read more by the author or series, choose commitment low.
+
