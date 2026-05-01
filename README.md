@@ -31,11 +31,12 @@ The current repo includes a parsed working split from `/Users/pod/Desktop/goodre
 
 Current included files:
 
-- `data/processed/train.csv`: 12,000 reviews
-- `data/processed/test.csv`: 3,000 reviews
-- `data/processed/holdout_locked.csv`: 1,000 reviews
+- `data/processed/train_no_holdout_overlap.csv`: 12,000 reviews, regenerated to avoid overlap with the human-labeled holdout
+- `data/processed/test_no_holdout_overlap.csv`: 3,000 reviews, regenerated to avoid overlap with the human-labeled holdout
+- `data/processed/holdout_locked.csv`: original 1,000-review holdout
 - `data/labels/holdout_labeling_workbook.xlsx`: human labeling workbook
 - `data/results/dictionary_baseline_predictions.csv`: automatic baseline predictions
+- `data/results/no_holdout_overlap_split_report.json`: verification that regenerated train/test do not overlap the holdout
 
 Raw source data and model checkpoints are intentionally excluded.
 

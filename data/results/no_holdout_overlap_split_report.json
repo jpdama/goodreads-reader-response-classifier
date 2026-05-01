@@ -1,0 +1,37 @@
+{
+  "fixed_holdout_source": "/Users/pod/Desktop/holdout_real_reviews.csv",
+  "note": "Holdout was kept unchanged because it has already been human labeled. Train/test were regenerated to avoid overlap with it.",
+  "holdout_fixed": {
+    "rows": 1000,
+    "unique_review_uid": 1000,
+    "duplicate_review_uid_rows": 0,
+    "unique_norm_text": 997,
+    "duplicate_norm_text_rows": 3
+  },
+  "test_no_holdout_overlap": {
+    "rows": 3000,
+    "unique_review_uid": 3000,
+    "duplicate_review_uid_rows": 0,
+    "unique_norm_text": 3000,
+    "duplicate_norm_text_rows": 0
+  },
+  "train_no_holdout_overlap": {
+    "rows": 12000,
+    "unique_review_uid": 12000,
+    "duplicate_review_uid_rows": 0,
+    "unique_norm_text": 12000,
+    "duplicate_norm_text_rows": 0
+  },
+  "holdout__test_overlap": {
+    "overlap_review_uid_count": 0,
+    "overlap_norm_text_count": 0
+  },
+  "holdout__train_overlap": {
+    "overlap_review_uid_count": 0,
+    "overlap_norm_text_count": 0
+  },
+  "test__train_overlap": {
+    "overlap_review_uid_count": 0,
+    "overlap_norm_text_count": 0
+  }
+}

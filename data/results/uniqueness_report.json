@@ -1,0 +1,42 @@
+{
+  "within_file_summary": {
+    "train": {
+      "rows": 12000,
+      "unique_review_uid": 12000,
+      "duplicate_review_uid_rows": 0,
+      "unique_norm_text": 11994,
+      "duplicate_norm_text_rows": 6,
+      "empty_norm_text_rows": 0
+    },
+    "test": {
+      "rows": 3000,
+      "unique_review_uid": 3000,
+      "duplicate_review_uid_rows": 0,
+      "unique_norm_text": 3000,
+      "duplicate_norm_text_rows": 0,
+      "empty_norm_text_rows": 0
+    },
+    "holdout_real_reviews": {
+      "rows": 1000,
+      "unique_review_uid": 1000,
+      "duplicate_review_uid_rows": 0,
+      "unique_norm_text": 997,
+      "duplicate_norm_text_rows": 3,
+      "empty_norm_text_rows": 0
+    }
+  },
+  "cross_file_overlaps": {
+    "train__test": {
+      "overlap_review_uid_count": 0,
+      "overlap_norm_text_count": 2
+    },
+    "train__holdout_real_reviews": {
+      "overlap_review_uid_count": 9,
+      "overlap_norm_text_count": 12
+    },
+    "test__holdout_real_reviews": {
+      "overlap_review_uid_count": 1,
+      "overlap_norm_text_count": 1
+    }
+  }
+}

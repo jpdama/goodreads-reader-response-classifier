@@ -14,11 +14,16 @@ models/*
 !data/processed/test.csv
 !data/processed/holdout_locked.csv
 !data/processed/split_stats.json
+!data/processed/train_no_holdout_overlap.csv
+!data/processed/test_no_holdout_overlap.csv
 !data/labels/.gitkeep
 !data/labels/holdout_human_labeling_sheet.csv
 !data/labels/holdout_labeling_workbook.xlsx
 !data/results/.gitkeep
 !data/results/dictionary_baseline_predictions.csv
+!data/results/uniqueness_report.json
+!data/results/duplicate_examples.csv
+!data/results/no_holdout_overlap_split_report.json
 !models/.gitkeep
 
 # Python
@@ -31,3 +36,6 @@ venv/
 # Local secrets
 .env
 .env.local
+
+# macOS
+.DS_Store

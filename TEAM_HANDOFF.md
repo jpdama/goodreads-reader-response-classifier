@@ -12,9 +12,11 @@ Important source note: the current parsed file was `/Users/pod/Desktop/goodreads
 - Label schema and detailed codebook drafted.
 - Data source plan drafted.
 - Dataset parsed into exact required split:
-  - `data/processed/train.csv`: 12,000 rows
-  - `data/processed/test.csv`: 3,000 rows
-  - `data/processed/holdout_locked.csv`: 1,000 rows
+  - `data/processed/train_no_holdout_overlap.csv`: 12,000 rows
+  - `data/processed/test_no_holdout_overlap.csv`: 3,000 rows
+  - `data/processed/holdout_locked.csv`: original 1,000-row holdout
+- The holdout has already been human labeled outside this repo as `/Users/pod/Desktop/holdout_real_reviews.csv`; do not replace it.
+- The original `train.csv` and `test.csv` had small overlaps with the labeled holdout. Use the `*_no_holdout_overlap.csv` files for all remaining genAI labeling and specialist-model training.
 - Labeling workbook created:
   - `data/labels/holdout_labeling_workbook.xlsx`
 - Dictionary baseline created:
@@ -23,13 +25,11 @@ Important source note: the current parsed file was `/Users/pod/Desktop/goodreads
 
 ## Highest-Priority Next Step
 
-Human labeling is now the bottleneck.
+Human labeling was the bottleneck. If the holdout labels are complete, the next bottleneck is reliability reporting and genAI benchmarking.
 
-1. Open `data/labels/holdout_labeling_workbook.xlsx`.
-2. Have all 3 coders label the `Pilot` sheet first.
-3. Meet once to resolve confusion.
-4. Then have all 3 coders independently label the full `Holdout` sheet.
-5. Save/export completed labels back to `data/labels/holdout_human_labeling_sheet.csv`.
+1. Put the completed human labels into `data/labels/holdout_human_labeling_sheet.csv`.
+2. Run the reliability report.
+3. Use `train_no_holdout_overlap.csv` and `test_no_holdout_overlap.csv` for genAI labeling and fine-tuning.
 
 ## After Human Labels Are Done
 
@@ -72,7 +72,9 @@ After selecting the best genAI model:
 ```bash
 python scripts/genai_label_train_test.py \
   --supplier OpenAI \
-  --model gpt-4o-mini
+  --model gpt-4o-mini \
+  --train-input data/processed/train_no_holdout_overlap.csv \
+  --test-input data/processed/test_no_holdout_overlap.csv
 ```
 
 Change supplier/model to the selected strategy.
@@ -99,4 +101,3 @@ Run at least four configurations for the A-level target.
 - Human-label only the 1,000 holdout reviews, because the assignment requires it.
 - Use the 60-row pilot to reduce disagreement before the full holdout.
 - Use the dictionary baseline as a quick additional baseline for the A-level rubric.
-
