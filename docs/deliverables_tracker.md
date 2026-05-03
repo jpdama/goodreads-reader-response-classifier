@@ -25,6 +25,7 @@
 | Labeling sheet script | Complete | `scripts/make_labeling_sheet.py` |
 | Reliability script | Complete | `scripts/reliability_report.py` |
 | GenAI benchmark script | Complete | `scripts/genai_benchmark.py` |
+| GPT-4.1-mini benchmark notebook | Complete | `notebooks/03_genai_benchmark_best.ipynb` |
 | Train/test genAI labeling script | Complete | `scripts/genai_label_train_test.py` |
 | Evaluation script | Complete | `scripts/evaluate_predictions.py` |
 | Dictionary baseline | Complete | `scripts/dictionary_baseline.py` |

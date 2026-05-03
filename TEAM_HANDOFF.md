@@ -25,6 +25,8 @@ Important source note: the current parsed file was `/Users/pod/Desktop/goodreads
   - `data/results/human_reliability_report.json`
   - `data/results/holdout_human_consensus.csv`
 - GenAI benchmark and RoBERTa results are summarized in `docs/technical_appendix_outline.md`.
+- GPT-4.1-mini benchmark and labeling notebook:
+  - `notebooks/03_genai_benchmark_best.ipynb`
 - Specialist training and holdout inference notebook:
   - `notebooks/04_train_specialist.ipynb`
 - Specialist inference script:
@@ -64,7 +66,7 @@ export XAI_API_KEY="..."
 
 Then run the benchmark notebook:
 
-`notebooks/03_genai_benchmark.ipynb`
+`notebooks/03_genai_benchmark_best.ipynb`
 
 Minimum required roster is in:
 

@@ -38,6 +38,7 @@ Current included files:
 - `data/results/dictionary_baseline_predictions.csv`: automatic baseline predictions
 - `data/results/no_holdout_overlap_split_report.json`: verification that regenerated train/test do not overlap the holdout
 - `reports/specialist_model.docx`: RoBERTa specialist model results
+- `notebooks/03_genai_benchmark_best.ipynb`: sanitized GPT-4.1-mini benchmark and labeling notebook
 - `notebooks/04_train_specialist.ipynb`: Colab/local specialist training and holdout evaluation notebook
 - `scripts/predict_specialist.py`: inference script for saved RoBERTa task models
 
