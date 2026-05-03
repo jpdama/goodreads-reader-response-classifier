@@ -13,13 +13,13 @@ from common import validate_label_payload
 
 
 MODEL_PRICES_PER_1M_TOKENS = {
-    # Update before final submission using provider pricing pages.
     "gpt-4o-mini": {"input": 0.15, "output": 0.60},
     "gpt-4.1-mini": {"input": 0.40, "output": 1.60},
-    "claude-3-5-haiku-latest": {"input": 0.80, "output": 4.00},
-    "claude-3-7-sonnet-latest": {"input": 3.00, "output": 15.00},
-    "gemini-2.0-flash": {"input": 0.10, "output": 0.40},
-    "gemini-2.5-pro": {"input": 1.25, "output": 10.00},
+    "claude-sonnet-4-6": {"input": 3.00, "output": 15.00},
+    "deepseek-chat": {"input": 0.27, "output": 1.10},
+    "deepseek-v4-pro": {"input": 1.74, "output": 3.48},
+    "grok-3-fast": {"input": 0.60, "output": 4.00},
+    "grok-4-1-fast": {"input": 0.20, "output": 0.50},
 }
 
 
@@ -48,18 +48,48 @@ def call_openai(model: str, prompt: str) -> str:
     )
     return response.output_text
 
+def call_deepseek(model: str, prompt: str) -> str:
+    from openai import OpenAI
+    client = OpenAI(
+        api_key=os.environ.get("DEEPSEEK_API_KEY"),
+        base_url="https://api.deepseek.com"
+    )
+    response = client.chat.completions.create(
+        model=model,
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0,
+        response_format={"type": "json_object"}, 
+    )
+    return response.choices[0].message.content
+
 
 def call_anthropic(model: str, prompt: str) -> str:
     import anthropic
+    import re
+    import json
 
     client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
+
     response = client.messages.create(
         model=model,
         max_tokens=500,
         temperature=0,
         messages=[{"role": "user", "content": prompt}],
     )
-    return "".join(block.text for block in response.content if getattr(block, "type", "") == "text")
+    text = "".join(block.text for block in response.content if getattr(block, "type", "") == "text")
+
+    #print("RAW RESPONSE:", response.content)
+    
+    # strip markdown fences
+    text = text.replace("```json", "").replace("```", "").strip()
+
+    match = re.search(r"\{.*\}", text, re.DOTALL)
+    if not match:
+        raise ValueError(f"No JSON found in: {text}")
+    
+    #print("Parsed:", json.loads(match.group(0)))
+    
+    return match.group(0)
 
 
 def call_google(model: str, prompt: str) -> str:
@@ -73,6 +103,20 @@ def call_google(model: str, prompt: str) -> str:
     )
     return response.text or "{}"
 
+def call_grok(model: str, prompt: str) -> str:
+    from openai import OpenAI
+    client = OpenAI(
+        api_key=os.environ.get("XAI_API_KEY"),
+        base_url="https://api.x.ai/v1"
+    )
+    response = client.chat.completions.create(
+        model=model,
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0,
+        response_format={"type": "json_object"},
+    )
+    return response.choices[0].message.content
+
 
 def call_model(supplier: str, model: str, prompt: str) -> str:
     supplier_lower = supplier.lower()
@@ -82,6 +126,10 @@ def call_model(supplier: str, model: str, prompt: str) -> str:
         return call_anthropic(model, prompt)
     if supplier_lower == "google":
         return call_google(model, prompt)
+    if supplier_lower == "deepseek":
+        return call_deepseek(model, prompt)
+    if supplier_lower == "grok":
+        return call_grok(model, prompt)
     raise ValueError(f"Unsupported supplier: {supplier}")
 
 
