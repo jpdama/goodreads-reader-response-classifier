@@ -29,6 +29,7 @@
 | Evaluation script | Complete | `scripts/evaluate_predictions.py` |
 | Dictionary baseline | Complete | `scripts/dictionary_baseline.py` |
 | Transformer training script | Complete | `scripts/train_transformer.py` |
+| Specialist inference script | Complete | `scripts/predict_specialist.py` |
 | Raw dataset | Excluded from repo by design | `data/raw/` |
 | Locked holdout | Complete | `data/processed/holdout_locked.csv` |
 | Human labels | Complete | `data/labels/holdout_human_labeling_sheet.csv` |

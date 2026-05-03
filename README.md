@@ -38,6 +38,8 @@ Current included files:
 - `data/results/dictionary_baseline_predictions.csv`: automatic baseline predictions
 - `data/results/no_holdout_overlap_split_report.json`: verification that regenerated train/test do not overlap the holdout
 - `reports/specialist_model.docx`: RoBERTa specialist model results
+- `notebooks/04_train_specialist.ipynb`: Colab/local specialist training and holdout evaluation notebook
+- `scripts/predict_specialist.py`: inference script for saved RoBERTa task models
 
 Raw source data and model checkpoints are intentionally excluded.
 
@@ -62,7 +64,8 @@ The recommended production design is a hybrid workflow: GPT-4o-mini labels new b
 5. Use `scripts/genai_benchmark.py` to reproduce the genAI benchmark.
 6. Use `scripts/genai_label_train_test.py` with GPT-4o-mini for scalable train/test labeling.
 7. Use `scripts/train_transformer.py` to reproduce RoBERTa specialist model fine-tuning.
-8. Complete the final memo, appendix, and IGNITE deck with the resulting metrics.
+8. Use `scripts/predict_specialist.py` to run saved specialist models on the locked holdout or new review files.
+9. Complete the final memo, appendix, and IGNITE deck with the resulting metrics.
 
 ## Data Governance Note
 

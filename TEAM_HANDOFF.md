@@ -25,6 +25,10 @@ Important source note: the current parsed file was `/Users/pod/Desktop/goodreads
   - `data/results/human_reliability_report.json`
   - `data/results/holdout_human_consensus.csv`
 - GenAI benchmark and RoBERTa results are summarized in `docs/technical_appendix_outline.md`.
+- Specialist training and holdout inference notebook:
+  - `notebooks/04_train_specialist.ipynb`
+- Specialist inference script:
+  - `scripts/predict_specialist.py`
 - Reproducible scripts and notebooks created.
 
 ## Highest-Priority Next Step
@@ -87,6 +91,18 @@ Use:
 `notebooks/04_train_specialist.ipynb`
 
 Run at least four configurations for the A-level target.
+
+For saved RoBERTa models, use:
+
+```bash
+python scripts/predict_specialist.py \
+  --input data/processed/holdout_locked.csv \
+  --output data/results/holdout_roberta_config3_predictions.csv \
+  --emotion-model models/emotions_roberta-base_lr2e-05_ep5.0/best_model \
+  --commitment-model models/commitment_roberta-base_lr2e-05_ep5.0/best_model \
+  --recommendation-model models/recommendation_roberta-base_lr2e-05_ep5.0/best_model \
+  --threshold 0.4
+```
 
 ## Final Deliverables To Finish
 
