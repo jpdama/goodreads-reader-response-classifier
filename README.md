@@ -37,21 +37,32 @@ Current included files:
 - `data/labels/holdout_labeling_workbook.xlsx`: human labeling workbook
 - `data/results/dictionary_baseline_predictions.csv`: automatic baseline predictions
 - `data/results/no_holdout_overlap_split_report.json`: verification that regenerated train/test do not overlap the holdout
+- `reports/specialist_model.docx`: RoBERTa specialist model results
 
 Raw source data and model checkpoints are intentionally excluded.
+
+## Final Modeling Recommendation
+
+Use GPT-4o-mini as the best overall genAI labeling strategy because it is inexpensive, reliable, and had no parsing failures. Use RoBERTa as the deployed specialist classifier because it outperformed GPT-4o-mini on the locked holdout for emotions, commitment, and recommendation.
+
+| Task | GPT-4o-mini Macro F1 | RoBERTa Macro F1 |
+|---|---:|---:|
+| Emotions | 0.394 | 0.406 |
+| Commitment | 0.516 | 0.622 |
+| Recommendation | 0.563 | 0.700 |
+
+The recommended production design is a hybrid workflow: GPT-4o-mini labels new batches or ambiguous reviews, while RoBERTa handles routine high-volume classification.
 
 ## Recommended Execution Order
 
 1. Review `docs/concept_brief.md` and `docs/labeling_codebook.md`.
 2. Download one UCSD Goodreads review subset into `data/raw/`.
-3. Run `scripts/collect_goodreads.py` to sample 16,000 raw reviews.
-4. Run `scripts/preprocess_split.py` to lock `holdout.csv`, `train.csv`, and `test.csv`.
-5. Run `scripts/make_labeling_sheet.py` for three independent human coders.
-6. Run `scripts/reliability_report.py` after human labels are returned.
-7. Run `scripts/genai_benchmark.py` on the locked holdout for at least six models.
-8. Run `scripts/genai_label_train_test.py` with the chosen genAI strategy.
-9. Run `scripts/train_transformer.py` for specialist model fine-tuning.
-10. Complete the final memo, appendix, and IGNITE deck with the resulting metrics.
+3. Use `data/processed/train_no_holdout_overlap.csv`, `data/processed/test_no_holdout_overlap.csv`, and `data/processed/holdout_locked.csv` for final modeling.
+4. Run `scripts/reliability_report.py` if human labels change.
+5. Use `scripts/genai_benchmark.py` to reproduce the genAI benchmark.
+6. Use `scripts/genai_label_train_test.py` with GPT-4o-mini for scalable train/test labeling.
+7. Use `scripts/train_transformer.py` to reproduce RoBERTa specialist model fine-tuning.
+8. Complete the final memo, appendix, and IGNITE deck with the resulting metrics.
 
 ## Data Governance Note
 
