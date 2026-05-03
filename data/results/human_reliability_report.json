@@ -1,0 +1,68 @@
+{
+  "input_path": "data/labels/holdout_human_labeling_sheet.csv",
+  "coder_count": 3,
+  "dimensions": {
+    "commitment": {
+      "krippendorff_alpha_nominal": 0.19384414302054098,
+      "percent_full_agreement": 0.394
+    },
+    "recommendation": {
+      "krippendorff_alpha_nominal": 0.3129684878783755,
+      "percent_full_agreement": 0.546
+    },
+    "emotions": {
+      "joy": {
+        "alpha": 0.1327001223165074,
+        "percent_agreement": 0.554
+      },
+      "love": {
+        "alpha": 0.3034275722582692,
+        "percent_agreement": 0.478
+      },
+      "surprise": {
+        "alpha": 0.20725776149959063,
+        "percent_agreement": 0.699
+      },
+      "contentment": {
+        "alpha": 0.04516715967173657,
+        "percent_agreement": 0.527
+      },
+      "interest": {
+        "alpha": 0.1454732197237225,
+        "percent_agreement": 0.414
+      },
+      "anger": {
+        "alpha": 0.12370119999284745,
+        "percent_agreement": 0.951
+      },
+      "frustration": {
+        "alpha": 0.22807739810621674,
+        "percent_agreement": 0.84
+      },
+      "disappointment": {
+        "alpha": 0.32715311004784686,
+        "percent_agreement": 0.838
+      },
+      "sadness": {
+        "alpha": 0.20460384338711346,
+        "percent_agreement": 0.742
+      },
+      "fear": {
+        "alpha": 0.12943871706758348,
+        "percent_agreement": 0.924
+      },
+      "disgust": {
+        "alpha": 0.12702220194886027,
+        "percent_agreement": 0.963
+      },
+      "boredom": {
+        "alpha": 0.3568830759222932,
+        "percent_agreement": 0.913
+      },
+      "none": {
+        "alpha": 0.38046712269045446,
+        "percent_agreement": 0.919
+      }
+    }
+  }
+}

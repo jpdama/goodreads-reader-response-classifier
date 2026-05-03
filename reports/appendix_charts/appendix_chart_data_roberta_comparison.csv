@@ -1,0 +1,3 @@
+strategy,emotion,commitment,recommendation
+GPT-4o-mini,0.394,0.516,0.563
+RoBERTa holdout,0.406,0.622,0.7

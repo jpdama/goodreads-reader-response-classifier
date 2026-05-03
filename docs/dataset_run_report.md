@@ -30,11 +30,13 @@ Rows available after dedupe: `16,117`
 
 Final locked files:
 
-- `data/processed/train.csv`: `12,000` rows
-- `data/processed/test.csv`: `3,000` rows
+- `data/processed/train_no_holdout_overlap.csv`: `12,000` rows
+- `data/processed/test_no_holdout_overlap.csv`: `3,000` rows
 - `data/processed/holdout_locked.csv`: `1,000` rows
 
 This satisfies the assignment target of 15,000 train/test texts plus a 1,000-text locked holdout.
+
+After the holdout was human labeled, the train and test files were regenerated to remove holdout overlap. The original `train.csv` and `test.csv` files are no longer the recommended modeling inputs.
 
 ## Rating Distribution After Cleaning
 
@@ -81,4 +83,3 @@ Recommended human workflow:
 2. Meet once to resolve codebook confusion.
 3. Then all three coders independently label the `Holdout` sheet.
 4. Export/save the completed workbook as CSV if needed, then run `scripts/reliability_report.py`.
-

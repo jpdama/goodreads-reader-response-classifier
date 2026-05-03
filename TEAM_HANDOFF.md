@@ -2,15 +2,15 @@
 
 ## Current Status
 
-The repo is ready for teammates to continue from the current Goodreads spoiler-review dataset split.
+The repo is ready for final submission review from the current Goodreads spoiler-review dataset split.
 
 Important source note: the current parsed file was `/Users/pod/Desktop/goodreads_reviews_spoiler.json`, the UCSD Goodreads spoiler-review subset. This is acceptable for the assignment if we describe it as a Goodreads review source. Do not call it the Young Adult subset unless we later rerun the pipeline with `goodreads_reviews_young_adult.json.gz` or filter by genre metadata.
 
 ## What Is Already Done
 
-- Business concept brief drafted.
-- Label schema and detailed codebook drafted.
-- Data source plan drafted.
+- Business concept brief completed.
+- Label schema and detailed codebook completed.
+- Data source plan completed.
 - Dataset parsed into exact required split:
   - `data/processed/train_no_holdout_overlap.csv`: 12,000 rows
   - `data/processed/test_no_holdout_overlap.csv`: 3,000 rows
@@ -21,15 +21,15 @@ Important source note: the current parsed file was `/Users/pod/Desktop/goodreads
   - `data/labels/holdout_labeling_workbook.xlsx`
 - Dictionary baseline created:
   - `data/results/dictionary_baseline_predictions.csv`
+- Human reliability results created:
+  - `data/results/human_reliability_report.json`
+  - `data/results/holdout_human_consensus.csv`
+- GenAI benchmark and RoBERTa results are summarized in `docs/technical_appendix_outline.md`.
 - Reproducible scripts and notebooks created.
 
 ## Highest-Priority Next Step
 
-Human labeling was the bottleneck. If the holdout labels are complete, the next bottleneck is reliability reporting and genAI benchmarking.
-
-1. Put the completed human labels into `data/labels/holdout_human_labeling_sheet.csv`.
-2. Run the reliability report.
-3. Use `train_no_holdout_overlap.csv` and `test_no_holdout_overlap.csv` for genAI labeling and fine-tuning.
+Do a final team read-through of the memo, appendix, and IGNITE deck. The remaining work is presentation polish, not pipeline setup.
 
 ## After Human Labels Are Done
 
@@ -54,7 +54,8 @@ Set API keys:
 ```bash
 export OPENAI_API_KEY="..."
 export ANTHROPIC_API_KEY="..."
-export GOOGLE_API_KEY="..."
+export DEEPSEEK_API_KEY="..."
+export XAI_API_KEY="..."
 ```
 
 Then run the benchmark notebook:
@@ -89,11 +90,10 @@ Run at least four configurations for the A-level target.
 
 ## Final Deliverables To Finish
 
-- Fill final metrics into `docs/executive_memo_draft.md`.
-- Fill benchmark and fine-tuning tables into `docs/technical_appendix_outline.md`.
-- Build the final 20-slide IGNITE deck from `docs/ignite_storyboard.md`.
-- Include cost/time/reproducibility comparison.
-- Add error analysis and mitigation.
+- Check `docs/executive_memo_draft.md` for team voice and formatting.
+- Check `docs/technical_appendix_outline.md` against the professor's submission checklist.
+- Build or finalize the 20-slide IGNITE deck from `docs/ignite_storyboard.md`.
+- Confirm the Google Doc appendix charts are visible before submission.
 
 ## Recommended Manual-Work Minimization
 

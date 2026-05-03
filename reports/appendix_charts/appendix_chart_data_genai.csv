@@ -1,0 +1,7 @@
+model,emotion,commitment,recommendation,cost_1k,runtime_1k_sec,parse_failures
+GPT-4o-mini,0.394,0.516,0.563,0.138,2854,0
+GPT-4.1-mini,0.413,0.622,0.711,0.409,2475,0
+Claude Sonnet 4.6,0.411,0.618,0.757,3.913,3754,2
+DeepSeek Chat,0.424,0.617,0.72,0.269,2025,0
+Grok 3 Fast,0.451,0.611,0.737,0.741,1971,0
+Grok 4.1 Fast,0.421,0.523,0.704,0.164,8978,0

@@ -7,22 +7,22 @@ benchmark_roster:
   models:
     - supplier: OpenAI
       model: gpt-4o-mini
-      task_role: low_cost_frontier_baseline
+      task_role: selected_low_cost_labeler
     - supplier: OpenAI
       model: gpt-4.1-mini
       task_role: stronger_openai_baseline
     - supplier: Anthropic
-      model: claude-3-5-haiku-latest
-      task_role: low_latency_anthropic_baseline
-    - supplier: Anthropic
-      model: claude-3-7-sonnet-latest
+      model: claude-sonnet-4.6
       task_role: stronger_anthropic_baseline
-    - supplier: Google
-      model: gemini-2.0-flash
-      task_role: low_cost_google_baseline
-    - supplier: Google
-      model: gemini-2.5-pro
-      task_role: high_reasoning_google_baseline
+    - supplier: DeepSeek
+      model: deepseek-chat
+      task_role: low_cost_external_baseline
+    - supplier: xAI
+      model: grok-3-fast
+      task_role: fast_external_baseline
+    - supplier: xAI
+      model: grok-4.1-fast
+      task_role: newer_external_baseline
 
 selection_strategy_candidates:
   - best_single_model_by_macro_f1
@@ -42,4 +42,3 @@ metrics:
     - runtime_seconds
     - estimated_cost_usd
     - parse_failure_rate
-

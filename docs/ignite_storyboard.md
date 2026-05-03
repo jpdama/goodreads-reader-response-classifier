@@ -1,6 +1,6 @@
 # IGNITE Talk Storyboard
 
-20 slides, 15 seconds each, 5 minutes total. Replace TBD metrics after model runs.
+20 slides, 15 seconds each, 5 minutes total.
 
 | Slide | Presenter | Message | Visual Direction |
 |---:|---|---|---|
@@ -16,14 +16,13 @@
 | 10 | Team member 3 | Reliability tells us where the construct is hard. | Alpha and disagreement chart. |
 | 11 | Team member 3 | Six genAI models became alternative labelers. | Model roster by supplier. |
 | 12 | Team member 3 | Same prompt, same schema, same locked set. | Prompt-to-JSON visual. |
-| 13 | Team member 4 | Best genAI model result: TBD. | Benchmark chart. |
+| 13 | Team member 4 | GPT-4o-mini was the best overall genAI labeler on cost, reliability, and parse success. | Benchmark chart. |
 | 14 | Team member 4 | We used the best strategy to label train/test. | Scale-up arrow from 1k to 15k. |
 | 15 | Team member 4 | Specialist model: RoBERTa-style classifier. | Model pipeline. |
 | 16 | Team member 4 | Four configurations tested robustness. | Experiment table with final metrics. |
 | 17 | Team member 5 | Error analysis: likely failures are mixed emotions and conditional language. | Confusion examples. |
 | 18 | Team member 5 | Cost and speed change the deployment answer. | Cost per 10k comparison. |
-| 19 | Team member 5 | Recommendation: TBD after final metrics. | Decision matrix. |
+| 19 | Team member 5 | Recommendation: deploy RoBERTa for routine classification and use GPT-4o-mini for new labeling or low-confidence cases. | Decision matrix. |
 | 20 | Team member 5 | The takeaway: structure review text into repeatable business signals. | Closing statement. |
 
 Speaker allocation should be adjusted so every team member presents at least two slides.
-

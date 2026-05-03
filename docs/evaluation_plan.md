@@ -29,7 +29,7 @@ Report:
 
 ## GenAI Benchmark
 
-Benchmark at least six models from at least three suppliers. The starter roster in `config/genai_models.yaml` uses OpenAI, Anthropic, and Google.
+Benchmark at least six models from at least three suppliers. The final roster in `config/genai_models.yaml` uses OpenAI, Anthropic, DeepSeek, and xAI.
 
 Controls:
 
@@ -92,4 +92,3 @@ The recommendation should answer:
 - Which is most reproducible?
 - Which failure modes are acceptable for the business decision?
 - What monitoring and human review should remain in production?
-

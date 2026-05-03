@@ -11,8 +11,8 @@ def main() -> None:
     parser.add_argument("--supplier", required=True)
     parser.add_argument("--model", required=True)
     parser.add_argument("--prompt", default=Path("config/prompt_template.md"), type=Path)
-    parser.add_argument("--train-input", default=Path("data/processed/train.csv"), type=Path)
-    parser.add_argument("--test-input", default=Path("data/processed/test.csv"), type=Path)
+    parser.add_argument("--train-input", default=Path("data/processed/train_no_holdout_overlap.csv"), type=Path)
+    parser.add_argument("--test-input", default=Path("data/processed/test_no_holdout_overlap.csv"), type=Path)
     parser.add_argument("--output-dir", default=Path("data/labels"), type=Path)
     parser.add_argument("--limit", default=None, type=int)
     args = parser.parse_args()
@@ -24,4 +24,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

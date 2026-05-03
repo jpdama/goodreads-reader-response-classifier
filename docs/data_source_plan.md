@@ -64,8 +64,8 @@ Use stratified sampling so the dataset is not dominated by short positive review
 Recommended operational split:
 
 - `holdout.csv`: 1,000 reviews, locked immediately.
-- `train.csv`: 12,000 reviews.
-- `test.csv`: 3,000 reviews.
+- `train_no_holdout_overlap.csv`: 12,000 reviews.
+- `test_no_holdout_overlap.csv`: 3,000 reviews.
 
 The train/test labels may be generated after benchmarking the genAI strategy. The holdout labels must come from humans.
 
@@ -95,4 +95,3 @@ The dataset documentation should report:
 - Review length summary.
 - Final split counts.
 - Any oversampling rules used.
-

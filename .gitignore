@@ -24,6 +24,8 @@ models/*
 !data/results/uniqueness_report.json
 !data/results/duplicate_examples.csv
 !data/results/no_holdout_overlap_split_report.json
+!data/results/holdout_human_consensus.csv
+!data/results/human_reliability_report.json
 !models/.gitkeep
 
 # Python
